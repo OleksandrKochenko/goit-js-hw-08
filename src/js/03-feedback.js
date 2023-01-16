@@ -36,9 +36,15 @@ form.addEventListener('input', throttle((event) => {
 
 // handle submit event
 form.addEventListener('submit', (event) => {
-    event.preventDefault();
-    console.log(storageData);
-    localStorage.removeItem('feedback-form-state');
-    form.reset();
+    if (inputEmail.value !== '' && inputMessage.value !== '') {
+        event.preventDefault();
+        console.log(storageData);
+        storageData = {};
+        localStorage.removeItem('feedback-form-state');
+        form.reset();
+    } else {
+        alert('Fill up all fields!');
+    }
+    
 });
 
